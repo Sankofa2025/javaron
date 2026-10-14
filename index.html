@@ -267,7 +267,7 @@
       flex-direction: column;
     }
     
-    /* UPDATED: Flyer Image Container - No longer forced to 4/5 ratio, shows full image */
+    /* Flyer Image Container */
     .attorney-card__image {
       overflow: hidden;
       background: var(--navy-800);
@@ -276,7 +276,7 @@
     .attorney-card__image img {
       width: 100%;
       height: auto;
-      object-fit: contain; /* Ensures the entire flyer is visible without cropping */
+      object-fit: contain;
       object-position: center;
       display: block;
     }
@@ -305,19 +305,19 @@
     }
     .attorney-contact a:hover { color: var(--brass-600); }
 
-    /* UPDATED: Social Icons - High contrast light icons on dark background, dark icons on gold hover */
+    /* Social Icons */
     .social-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
     .social-link {
       display: inline-flex; align-items: center; justify-content: center;
       width: 40px; height: 40px; border-radius: 50%; 
       background: var(--navy-900); 
-      color: #ffffff; /* Pure white icons for maximum contrast */
+      color: #ffffff;
       transition: all var(--transition);
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
     .social-link:hover { 
       background: var(--brass-500); 
-      color: var(--navy-900); /* Dark navy icons on gold background */
+      color: var(--navy-900);
       transform: translateY(-3px); 
       box-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
       border-color: var(--brass-500);
@@ -357,7 +357,7 @@
       line-height: 1.6; font-style: italic; color: var(--parchment-100); margin: 0 0 2.5rem; position: relative;
     }
     .testimonial-card blockquote::before {
-      content: "“"; display: block; font-size: 5rem; color: var(--brass-500);
+      content: "``"; display: block; font-size: 5rem; color: var(--brass-500);
       line-height: 0.8; margin-bottom: 1.5rem; font-family: "Fraunces", Georgia, serif;
     }
     .testimonial-author { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
@@ -629,6 +629,18 @@
                 <div style="margin-bottom: 0.5rem;"><strong>Direct Line:</strong> <a href="tel:+18723215229">(872) 321-5229</a></div>
                 <div><strong>Email:</strong> <a href="mailto:results@sankofalawgroup.com">results@sankofalawgroup.com</a></div>
               </div>
+              <form action="https://formspree.io/f/mrpeobag" method="POST" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(58, 58, 54, 0.1);">
+                <div style="margin-bottom: 1rem;">
+                  <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <textarea name="message" placeholder="Your Message" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn--oxblood" style="width: 100%;">Send Message to Javaron</button>
+              </form>
             </div>
           </article>
 
@@ -661,6 +673,18 @@
                   </a>
                 </div>
               </div>
+              <form action="https://formspree.io/f/mrpeobag" method="POST" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(58, 58, 54, 0.1);">
+                <div style="margin-bottom: 1rem;">
+                  <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <textarea name="message" placeholder="Your Message" rows="3" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(58, 58, 54, 0.2); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn--oxblood" style="width: 100%;">Send Message to Tiarra</button>
+              </form>
             </div>
           </article>
         </div>
@@ -676,6 +700,16 @@
         </div>
         
         <div class="testimonial-card">
+          <blockquote>
+            As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯 🔥 Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️ 👏🏾 When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! 🗣️💪
+          </blockquote>
+          <div class="testimonial-author">
+            <strong>Antonio Clinton</strong>
+            <span>Verified Client</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card" style="margin-top: 3rem;">
           <blockquote>
             Words cannot adequately express how grateful I am to have Javaron Buckley in my corner. Navigating both a criminal matter and a civil case simultaneously is one of the most stressful, high-stakes experiences a person can go through, but Javaron has handled both fronts with unwavering dedication and an incredible grasp of the law.
             <br><br>
