@@ -266,17 +266,21 @@
       display: flex;
       flex-direction: column;
     }
+    
+    /* UPDATED: Flyer Image Container - No longer forced to 4/5 ratio, shows full image */
     .attorney-card__image {
-      aspect-ratio: 4 / 5;
       overflow: hidden;
       background: var(--navy-800);
+      border-bottom: 1px solid rgba(58, 58, 54, 0.1);
     }
     .attorney-card__image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
+      object-fit: contain; /* Ensures the entire flyer is visible without cropping */
+      object-position: center;
+      display: block;
     }
+
     .attorney-card__content {
       padding: 2rem;
       flex-grow: 1;
@@ -301,15 +305,24 @@
     }
     .attorney-contact a:hover { color: var(--brass-600); }
 
-    /* Social Icons */
+    /* UPDATED: Social Icons - High contrast light icons on dark background, dark icons on gold hover */
     .social-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
     .social-link {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 50%; background: var(--navy-800);
-      color: var(--parchment-100); transition: all var(--transition);
+      width: 40px; height: 40px; border-radius: 50%; 
+      background: var(--navy-900); 
+      color: #ffffff; /* Pure white icons for maximum contrast */
+      transition: all var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
-    .social-link:hover { background: var(--brass-500); transform: translateY(-2px); }
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+    .social-link:hover { 
+      background: var(--brass-500); 
+      color: var(--navy-900); /* Dark navy icons on gold background */
+      transform: translateY(-3px); 
+      box-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
+      border-color: var(--brass-500);
+    }
+    .social-link svg { width: 20px; height: 20px; fill: currentColor; }
 
     /* Practice areas */
     .practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; }
@@ -344,7 +357,7 @@
       line-height: 1.6; font-style: italic; color: var(--parchment-100); margin: 0 0 2.5rem; position: relative;
     }
     .testimonial-card blockquote::before {
-      content: "``"; display: block; font-size: 5rem; color: var(--brass-500);
+      content: "“"; display: block; font-size: 5rem; color: var(--brass-500);
       line-height: 0.8; margin-bottom: 1.5rem; font-family: "Fraunces", Georgia, serif;
     }
     .testimonial-author { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
@@ -622,7 +635,7 @@
           <!-- Tiarra Thompson -->
           <article class="attorney-card">
             <div class="attorney-card__image">
-              <img src="images/flyer.jpg" alt="Tiarra Thompson, Partner Attorney" width="600" height="750" loading="lazy">
+              <img src="images/flyer.jpg" alt="Tiarra Thompson, Partner Attorney" width="800" height="1000" loading="lazy">
             </div>
             <div class="attorney-card__content">
               <h3>Tiarra Thompson, Esq.</h3>
