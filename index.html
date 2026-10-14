@@ -251,9 +251,16 @@
     }
     .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
     .hero__notice { max-width: 40rem; margin: 1rem 0 0; color: var(--charcoal-500); font-size: 0.78rem; line-height: 1.5; }
-    .hero__image-wrap { position: relative; padding: 0 0 1.5rem 1.5rem; }
     
-    /* UPDATED: Removed forced 4/5 aspect ratio to eliminate dead space around the logo */
+    /* UPDATED: Flex layout to stack image and badge cleanly */
+    .hero__image-wrap { 
+      position: relative; 
+      padding: 0 0 1.5rem 1.5rem; 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
     .hero__image {
       max-height: 320px;
       overflow: hidden; 
@@ -263,6 +270,7 @@
       display: flex; 
       align-items: center; 
       justify-content: center;
+      width: 100%;
     }
     .hero__image img { 
       max-height: 100%; 
@@ -272,16 +280,24 @@
       object-position: center; 
     }
 
+    /* UPDATED: Badge now sits below the image as a clean caption card */
     .hero__badge {
-      position: absolute; bottom: 0; left: 0; max-width: 320px; padding: 1.35rem 1.5rem;
-      border-left: 3px solid var(--brass-500); border-radius: 2px; background: var(--navy-900);
-      box-shadow: var(--shadow-sm); color: var(--parchment-100);
+      position: static;
+      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 420px;
+      padding: 1.35rem 1.5rem;
+      border-left: 3px solid var(--brass-500);
+      border-radius: var(--radius-md);
+      background: var(--navy-900);
+      box-shadow: var(--shadow-sm);
+      color: var(--parchment-100);
     }
     .hero__badge strong {
       display: block; margin-bottom: 0.25rem; color: #dec08a;
       font-family: "Fraunces", Georgia, serif; font-size: 1.1rem; font-weight: 500;
     }
-    .hero__badge span { display: block; color: rgba(245, 240, 230, 0.85); font-size: 0.79rem; line-height: 1.55; }
+    .hero__badge span { display: block; color: rgba(245, 240, 230, 0.85); font-size: 0.85rem; line-height: 1.55; }
 
     /* Team Section */
     .team-section { background: var(--white); }
@@ -471,12 +487,10 @@
       .brand__attorney { font-size: 0.61rem; }
       .brand__mark { width: 34px; height: 34px; }
       .hero__actions, .hero__actions .btn { width: 100%; }
-      .hero__badge { max-width: calc(100% - 1rem); padding: 1.05rem 1.15rem; }
+      .hero__image { max-height: 200px; }
       .footer-main { grid-template-columns: 1fr; }
       .footer-brand { grid-column: auto; }
       .contact-direct-wrap { padding: 1.5rem; }
-      /* Smaller max-height for mobile to keep proportions tight */
-      .hero__image { max-height: 200px; } 
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -575,6 +589,7 @@
               width="800" height="500" loading="lazy"
             >
           </div>
+          <!-- Badge moved outside the image container to sit cleanly below it -->
           <div class="hero__badge">
             <strong>Focused. Discreet. Prepared.</strong>
             <span>Strategic counsel when your freedom, recovery, or future demand attention.</span>
