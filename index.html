@@ -20,21 +20,21 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Open Graph (Forces Sankofa Bird for Facebook, iMessage, WhatsApp, LinkedIn, etc.) -->
+  <!-- Open Graph (Forces Sankofa Logo for Facebook, iMessage, WhatsApp, LinkedIn, etc.) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sankofa Law Group">
   <meta property="og:title" content="Sankofa Law Group | Chicagoland Legal Advocates">
   <meta property="og:description" content="Relentless advocacy in personal injury, criminal defense, civil litigation, and family law across the Chicagoland area.">
   <meta property="og:url" content="https://www.sankofalawgroup.com/">
-  <meta property="og:image" content="https://www.sankofalawgroup.com/images/Sankofa_bird_symbol.svg.webp?v=1">
+  <meta property="og:image" content="https://www.sankofalawgroup.com/images/SankofaLawGroupLogo.jpg">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sankofa Law Group | Chicagoland Legal Advocates">
   <meta name="twitter:description" content="Relentless advocacy in personal injury, criminal defense, civil litigation, and family law across the Chicagoland area.">
-  <meta name="twitter:image" content="https://www.sankofalawgroup.com/images/Sankofa_bird_symbol.svg.webp?v=1">
+  <meta name="twitter:image" content="https://www.sankofalawgroup.com/images/SankofaLawGroupLogo.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,8 @@
     "telephone": "+1-872-321-5229",
     "email": "results@sankofalawgroup.com",
     "description": "Personal injury, criminal defense, civil litigation, and family law representation in the Chicagoland area.",
-    "image": "https://www.sankofalawgroup.com/images/Sankofa_bird_symbol.svg.webp",
+    "image": "https://www.sankofalawgroup.com/images/SankofaLawGroupLogo.jpg",
+    "logo": "https://www.sankofalawgroup.com/images/SankofaLawGroupLogo.jpg",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -275,7 +276,7 @@
       flex-direction: column;
     }
     
-    /* Image Container */
+    /* Image Container - Same height for both attorneys */
     .attorney-card__image {
       overflow: hidden;
       background: var(--navy-800);
@@ -283,9 +284,9 @@
     }
     .attorney-card__image img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
-      object-position: center;
+      height: 380px;
+      object-fit: cover;
+      object-position: center top;
       display: block;
     }
 
@@ -655,8 +656,7 @@
           <!-- Tiarra Thompson -->
           <article class="attorney-card">
             <div class="attorney-card__image">
-              <!-- RESIZED TO MATCH JAVARON'S HEIGHT -->
-              <img src="images/TiarraSankofa.jpg" alt="Tiarra Thompson, Partner Attorney" width="600" height="750" loading="lazy">
+              <img src="images/Tiarra Sankofa Crop.jpg" alt="Tiarra Thompson, Partner Attorney" width="600" height="750" loading="lazy">
             </div>
             <div class="attorney-card__content">
               <h3>Tiarra Thompson, Esq.</h3>
@@ -710,7 +710,7 @@
         
         <div class="testimonial-card">
           <blockquote>
-            As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯  Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️ 👏🏾 When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! 🗣️💪
+            As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯  Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️ 🏾 When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! 🗣️💪
           </blockquote>
           <div class="testimonial-author">
             <strong>Antonio Clinton</strong>
