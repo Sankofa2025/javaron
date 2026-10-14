@@ -254,9 +254,15 @@
     .hero__image-wrap { position: relative; padding: 0 0 1.5rem 1.5rem; }
     .hero__image {
       aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius-md);
-      background: var(--navy-900); box-shadow: var(--shadow-md);
+      background: var(--white); box-shadow: var(--shadow-md);
+      display: flex; align-items: center; justify-content: center;
     }
-    .hero__image img { height: 100%; object-fit: cover; object-position: center top; filter: grayscale(13%) contrast(1.04); }
+    .hero__image img { 
+      height: 100%; 
+      width: 100%; 
+      object-fit: contain; 
+      object-position: center; 
+    }
     .hero__badge {
       position: absolute; bottom: 0; left: 0; max-width: 320px; padding: 1.35rem 1.5rem;
       border-left: 3px solid var(--brass-500); border-radius: 2px; background: var(--navy-900);
@@ -553,8 +559,8 @@
         <div class="hero__image-wrap">
           <div class="hero__image">
             <img
-              src="images/IMG_6004.jpeg"
-              alt="Javaron Buckley and Tiarra Thompson, Attorneys at Sankofa Law Group"
+              src="images/SankofaLawGroupLogo.jpg"
+              alt="Sankofa Law Group Logo"
               width="800" height="1000" loading="lazy"
             >
           </div>
@@ -739,7 +745,7 @@
         
         <div class="testimonial-card">
           <blockquote>
-            As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯  Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️  When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! 🗣️💪
+            As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯  Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️  When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! ️💪
           </blockquote>
           <div class="testimonial-author">
             <strong>Antonio Clinton</strong>
