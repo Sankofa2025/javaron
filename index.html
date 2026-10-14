@@ -20,7 +20,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Open Graph (Forces Sankofa Logo for Facebook, iMessage, WhatsApp, LinkedIn, etc.) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sankofa Law Group">
   <meta property="og:title" content="Sankofa Law Group | Chicagoland Legal Advocates">
@@ -76,18 +76,26 @@
       "telephone": "+1-872-321-5229",
       "email": "results@sankofalawgroup.com"
     },
-    "employee": {
-      "@type": "Person",
-      "name": "Tiarra Thompson",
-      "jobTitle": "Partner Attorney",
-      "telephone": "+1-872-321-5300",
-      "email": "Tiarra@sankofalawgroup.com",
-      "alumniOf": [
-        {"@type": "CollegeOrUniversity", "name": "Western Michigan University Cooley Law School"},
-        {"@type": "CollegeOrUniversity", "name": "Hope College"}
-      ],
-      "url": "https://www.linkedin.com/in/tiarra-thompson-995474b0/"
-    },
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "Tiarra Thompson",
+        "jobTitle": "Partner Attorney",
+        "telephone": "+1-872-321-5300",
+        "email": "Tiarra@sankofalawgroup.com",
+        "alumniOf": [
+          {"@type": "CollegeOrUniversity", "name": "Western Michigan University Cooley Law School"},
+          {"@type": "CollegeOrUniversity", "name": "Hope College"}
+        ],
+        "url": "https://www.linkedin.com/in/tiarra-thompson-995474b0/"
+      },
+      {
+        "@type": "Person",
+        "name": "Darla Buckley",
+        "jobTitle": "Office Manager",
+        "email": "results@sankofalawgroup.com"
+      }
+    ],
     "sameAs": [
       "https://www.linkedin.com/in/tiarra-thompson-995474b0/",
       "https://www.instagram.com/tiarrathompsonlaw",
@@ -260,14 +268,14 @@
     }
     .hero__badge span { display: block; color: rgba(245, 240, 230, 0.85); font-size: 0.79rem; line-height: 1.55; }
 
-    /* Attorneys Section (Equal Visibility) */
-    .attorneys-section { background: var(--white); }
-    .attorneys-grid {
+    /* Team Section */
+    .team-section { background: var(--white); }
+    .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2.5rem;
     }
-    .attorney-card {
+    .team-card {
       background: var(--parchment-50);
       border-radius: var(--radius-md);
       overflow: hidden;
@@ -276,13 +284,12 @@
       flex-direction: column;
     }
     
-    /* Image Container - Same height for both attorneys */
-    .attorney-card__image {
+    .team-card__image {
       overflow: hidden;
       background: var(--navy-800);
       border-bottom: 1px solid rgba(58, 58, 54, 0.1);
     }
-    .attorney-card__image img {
+    .team-card__image img {
       width: 100%;
       height: 380px;
       object-fit: cover;
@@ -290,29 +297,30 @@
       display: block;
     }
 
-    .attorney-card__content {
+    .team-card__content {
       padding: 2rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
-    .attorney-card__content h3 { margin-bottom: 0.5rem; }
-    .attorney-card__title {
+    .team-card__content h3 { margin-bottom: 0.5rem; }
+    .team-card__title {
       display: block; color: var(--brass-600); font-weight: 600;
       font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;
     }
-    .attorney-card__content p { color: var(--charcoal-700); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
-    .attorney-contact {
+    .team-card__content p { color: var(--charcoal-700); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+    .team-card__content p + p { margin-top: 1rem; }
+    .team-contact {
       margin-top: auto;
       padding-top: 1.5rem;
       border-top: 1px solid rgba(58, 58, 54, 0.1);
       font-size: 0.9rem;
     }
-    .attorney-contact a {
+    .team-contact a {
       color: var(--navy-900); font-weight: 600; text-decoration: underline;
       text-decoration-color: var(--brass-500); text-underline-offset: 3px;
     }
-    .attorney-contact a:hover { color: var(--brass-600); }
+    .team-contact a:hover { color: var(--brass-600); }
 
     /* Social Icons */
     .social-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
@@ -492,7 +500,7 @@
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#practice-areas">Practice Areas</a>
-        <a href="#attorneys">Our Attorneys</a>
+        <a href="#team">Our Team</a>
         <a href="#testimonials">Client Results</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -510,7 +518,7 @@
       <div class="container mobile-nav__inner">
         <a href="#about">About</a>
         <a href="#practice-areas">Practice Areas</a>
-        <a href="#attorneys">Our Attorneys</a>
+        <a href="#team">Our Team</a>
         <a href="#testimonials">Client Results</a>
         <a href="#contact">Contact</a>
         <a class="btn btn--oxblood" href="tel:+18723215229">Call (872) 321-5229</a>
@@ -613,28 +621,28 @@
       </div>
     </section>
 
-    <!-- Meet Our Attorneys (Equal Visibility) -->
-    <section id="attorneys" class="section attorneys-section" aria-labelledby="attorneys-heading">
+    <!-- Meet Our Team -->
+    <section id="team" class="section team-section" aria-labelledby="team-heading">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Our Legal Team</span>
-          <h2 id="attorneys-heading">Meet the team fighting for you.</h2>
-          <p>Both founding and partner attorneys bring relentless dedication, strategic insight, and a deep commitment to justice to every case across the Chicagoland area.</p>
+          <span class="eyebrow">Our Team</span>
+          <h2 id="team-heading">Meet the team fighting for you.</h2>
+          <p>Our dedicated team brings relentless dedication, strategic insight, and a deep commitment to justice to every case across the Chicagoland area.</p>
         </div>
 
-        <div class="attorneys-grid">
+        <div class="team-grid">
           <!-- Javaron Buckley -->
-          <article class="attorney-card">
-            <div class="attorney-card__image">
+          <article class="team-card">
+            <div class="team-card__image">
               <img src="images/IMG_6004.jpeg" alt="Javaron Buckley, Founding Attorney" width="600" height="750" loading="lazy">
             </div>
-            <div class="attorney-card__content">
+            <div class="team-card__content">
               <h3>Javaron Buckley, Esq.</h3>
-              <span class="attorney-card__title">Founding Attorney</span>
+              <span class="team-card__title">Founding Attorney</span>
               <p>
                 Javaron represents clients in personal injury and criminal defense matters across the Chicagoland area with an emphasis on preparation, clear communication, and individualized strategy. He understands that legal problems are often defining moments, and that clients deserve counsel who treats them with seriousness and respect.
               </p>
-              <div class="attorney-contact">
+              <div class="team-contact">
                 <div style="margin-bottom: 0.5rem;"><strong>Direct Line:</strong> <a href="tel:+18723215229">(872) 321-5229</a></div>
                 <div><strong>Email:</strong> <a href="mailto:results@sankofalawgroup.com">results@sankofalawgroup.com</a></div>
               </div>
@@ -654,17 +662,17 @@
           </article>
 
           <!-- Tiarra Thompson -->
-          <article class="attorney-card">
-            <div class="attorney-card__image">
+          <article class="team-card">
+            <div class="team-card__image">
               <img src="images/Tiarra Sankofa Crop.jpg" alt="Tiarra Thompson, Partner Attorney" width="600" height="750" loading="lazy">
             </div>
-            <div class="attorney-card__content">
+            <div class="team-card__content">
               <h3>Tiarra Thompson, Esq.</h3>
-              <span class="attorney-card__title">Partner Attorney</span>
+              <span class="team-card__title">Partner Attorney</span>
               <p>
                 Tiarra brings dedicated advocacy and strategic insight to our personal injury, criminal defense, and family law matters. With a meticulous approach to case preparation, she ensures every client receives comprehensive, compassionate, and relentless representation.
               </p>
-              <div class="attorney-contact">
+              <div class="team-contact">
                 <div style="margin-bottom: 0.5rem;"><strong>Direct Line:</strong> <a href="tel:+18723215300">(872) 321-5300</a></div>
                 <div style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="mailto:Tiarra@sankofalawgroup.com">Tiarra@sankofalawgroup.com</a></div>
                 <div class="social-links">
@@ -696,6 +704,47 @@
               </form>
             </div>
           </article>
+
+          <!-- Darla Buckley -->
+          <article class="team-card">
+            <div class="team-card__image">
+              <img src="images/Darla Buckley.jpg" alt="Darla Buckley, Office Manager" width="600" height="750" loading="lazy">
+            </div>
+            <div class="team-card__content">
+              <h3>Darla Buckley</h3>
+              <span class="team-card__title">Office Manager</span>
+              <p>
+                <strong>Leadership. Integrity. Compassion. Excellence.</strong>
+              </p>
+              <p>
+                Darla Buckley serves as the Office Manager of Sankofa Law Group, bringing strong organizational skills, business management experience, and a genuine passion for helping others to the firm's daily operations.
+              </p>
+              <p>
+                With a background in business administration, entrepreneurship, and client relations, Darla plays an essential role in ensuring the firm operates efficiently while maintaining a welcoming, professional, and client-focused environment.
+              </p>
+              <p>
+                As Office Manager, Darla oversees administrative operations, coordinates client communications, manages scheduling, supports case organization, and works closely with the legal team to help provide a seamless experience for every client.
+              </p>
+              <p>
+                Beyond her administrative responsibilities, Darla is an entrepreneur and business-minded professional who understands the importance of leadership, problem-solving, confidentiality, and building meaningful relationships. Her ability to balance professionalism with compassion allows her to connect with individuals from all walks of life.
+              </p>
+              <p>
+                Darla believes that every client deserves to be treated with dignity, respect, and understanding. She is committed to ensuring that those who contact Sankofa Law Group feel heard, valued, and supported throughout their legal journey.
+              </p>
+              <p>
+                Guided by the firm's mission to <em>"Teach, Defend, Unify,"</em> Darla takes pride in contributing to a team dedicated to advocacy, education, and serving the community.
+              </p>
+              <p>
+                Her philosophy is simple: <em>"True leadership isn't about a title. It's about serving others, creating opportunities, and making a positive difference in the lives of those you encounter."</em>
+              </p>
+              <p>
+                At Sankofa Law Group, Darla is more than an Office Manager—she is a dedicated leader, a compassionate advocate for exceptional client service, and an important part of the firm's commitment to excellence.
+              </p>
+              <div class="team-contact">
+                <div><strong>Email:</strong> <a href="mailto:results@sankofalawgroup.com">results@sankofalawgroup.com</a></div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -708,7 +757,6 @@
           <h2 id="testimonials-heading" style="color: var(--parchment-100);">Trusted Advocacy When It Matters Most.</h2>
         </div>
         
-        <!-- Antonio's Testimonial -->
         <div class="testimonial-card">
           <blockquote>
             As per usual, Javaron D. Buckley Sr. STOOD ON BUSINESS! 💯  Y'all better go get this man's card!!! This man is the Brian Steel of the people! ️ 🏾 When you need somebody who's going to stand firm, know the law, and fight for the people, make sure you know who to call! 🗣️💪
@@ -719,7 +767,6 @@
           </div>
         </div>
 
-        <!-- Tiarra's New Testimonial -->
         <div class="testimonial-card" style="margin-top: 3rem;">
           <blockquote>
             I can't thank Tiarra Thompson enough for everything she did for me. From the very beginning, she was professional, knowledgeable, and genuinely cared about my case. She took the time to explain everything clearly, kept me informed throughout the process, and always made me feel like my concerns mattered. 10/10 definitely recommend her!
@@ -730,7 +777,6 @@
           </div>
         </div>
 
-        <!-- Alexander's Testimonial -->
         <div class="testimonial-card" style="margin-top: 3rem;">
           <blockquote>
             Words cannot adequately express how grateful I am to have Javaron Buckley in my corner. Navigating both a criminal matter and a civil case simultaneously is one of the most stressful, high-stakes experiences a person can go through, but Javaron has handled both fronts with unwavering dedication and an incredible grasp of the law.
@@ -819,7 +865,7 @@
         <ul>
           <li><a href="#about">About the Firm</a></li>
           <li><a href="#practice-areas">Practice Areas</a></li>
-          <li><a href="#attorneys">Our Attorneys</a></li>
+          <li><a href="#team">Our Team</a></li>
           <li><a href="#testimonials">Client Results</a></li>
           <li><a href="#contact">Contact the Firm</a></li>
         </ul>
