@@ -1,14 +1,27 @@
+/* editorial.css - Updated to match Sankofa Law Group Homepage */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..400&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --paper: #f8f6f1;
-  --surface: #ffffff;
-  --ink: #202b27;
-  --muted: #526159;
-  --brand: #174737;
-  --brand-dark: #103528;
-  --accent: #a87932;
-  --line: #d8dfd9;
-  --radius: 14px;
-  --width: 1100px;
+  /* Sankofa Brand Colors */
+  --navy-950: #07121e;
+  --navy-900: #0b1b2e;
+  --navy-800: #162b44;
+  --parchment-50: #fbf9f4;
+  --parchment-100: #f5f0e6;
+  --parchment-200: #ebe5da;
+  --brass-500: #b08d57;
+  --brass-600: #8f7041;
+  --charcoal-900: #252522;
+  --charcoal-700: #3a3a36;
+  --charcoal-500: #66665f;
+  --white: #ffffff;
+
+  /* Shared Effects */
+  --shadow-sm: 0 8px 22px rgba(11, 27, 46, 0.08);
+  --shadow-md: 0 18px 42px rgba(11, 27, 46, 0.14);
+  --radius-md: 8px;
+  --content-width: 1280px;
+  --transition: 180ms ease;
 }
 
 * {
@@ -21,29 +34,31 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 17px;
-  line-height: 1.7;
+  background: var(--parchment-100);
+  color: var(--charcoal-700);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--brand);
-  text-underline-offset: 0.2em;
+  color: var(--navy-900);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--brand-dark);
+  color: var(--brass-600);
 }
 
 a:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--brass-500);
   outline-offset: 4px;
 }
 
 .container {
-  width: min(var(--width), calc(100% - 40px));
+  width: min(var(--content-width), calc(100% - 2.5rem));
   margin-inline: auto;
 }
 
@@ -51,19 +66,25 @@ a:focus-visible {
   position: absolute;
   top: -100px;
   left: 16px;
-  z-index: 10;
-  padding: 12px 18px;
-  background: var(--surface);
-  color: var(--ink);
+  z-index: 1000;
+  padding: 0.7rem 1rem;
+  background: var(--white);
+  color: var(--navy-900);
+  font-weight: 700;
 }
 
 .skip-link:focus {
   top: 12px;
 }
 
+/* Header */
 .site-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
+  background: rgba(245, 240, 230, 0.97);
+  border-bottom: 1px solid rgba(58, 58, 54, 0.12);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-inner {
@@ -71,190 +92,246 @@ a:focus-visible {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding-block: 22px;
+  padding-block: 1.5rem;
   flex-wrap: wrap;
 }
 
 .brand {
-  color: var(--brand);
-  font-size: 1.2rem;
-  font-weight: 700;
+  color: var(--navy-900);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 24px;
+  gap: 1.5rem;
 }
 
 .site-nav a {
   font-weight: 600;
+  color: var(--charcoal-700);
   text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--brass-600);
 }
 
 .site-nav a[aria-current="page"] {
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-color: var(--brass-500);
+  text-underline-offset: 4px;
 }
 
+/* Hero Section */
 .hero {
-  padding-block: 64px 36px;
+  padding-block: 4rem 2rem;
 }
 
 .eyebrow {
-  margin: 0 0 12px;
-  color: var(--brand);
-  font-size: 0.8rem;
+  margin: 0 0 0.75rem;
+  color: var(--brass-600);
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
 }
 
-h1,
-h2,
-h3 {
-  line-height: 1.2;
+h1, h2, h3 {
+  color: var(--navy-900);
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 1.15;
+  margin-top: 0;
 }
 
 h1 {
   max-width: 900px;
-  margin: 0 0 20px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.3rem, 6vw, 4rem);
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .lead {
   max-width: 760px;
   margin: 0;
-  color: var(--muted);
-  font-size: 1.15rem;
+  color: var(--charcoal-500);
+  font-size: 1.1rem;
 }
 
+/* Content Section & Cards */
 .content-section {
-  padding-block: 12px 64px;
+  padding-block: 1rem 4rem;
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-.card,
-.empty-state {
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
+.card {
+  padding: 2rem;
+  border: 1px solid rgba(58, 58, 54, 0.1);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .card h2 {
-  margin: 10px 0 14px;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .card p {
-  margin-block: 12px;
+  margin-block: 0.75rem;
+  color: var(--charcoal-700);
 }
 
 .meta {
-  color: var(--muted);
-  font-size: 0.92rem;
+  color: var(--charcoal-500);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .tag {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
-  background: #e8eee9;
-  color: var(--brand);
-  font-size: 0.78rem;
+  background: var(--parchment-50);
+  color: var(--brass-600);
+  font-size: 0.75rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(176, 141, 87, 0.2);
+  width: fit-content;
 }
 
 .text-link {
-  display: inline-block;
-  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
   font-weight: 700;
+  color: var(--navy-900);
+  text-decoration: underline;
+  text-decoration-color: var(--brass-500);
+  text-underline-offset: 4px;
+}
+
+.text-link:hover {
+  color: var(--brass-600);
 }
 
 .editorial-note {
   max-width: 800px;
-  margin-top: 32px;
-  color: var(--muted);
-  font-size: 0.92rem;
+  margin-top: 3rem;
+  color: var(--charcoal-500);
+  font-size: 0.9rem;
+  font-style: italic;
+  border-left: 3px solid var(--brass-500);
+  padding-left: 1rem;
 }
 
+/* Blog Post Specifics (for when you create individual post pages) */
 .post {
   max-width: 780px;
   margin-inline: auto;
-  padding-block: 42px 64px;
+  padding-block: 3rem 4rem;
 }
 
 .post-header {
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--line);
-}
-
-.post h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(58, 58, 54, 0.12);
+  margin-bottom: 2rem;
 }
 
 .post-body {
-  padding-block: 12px 24px;
+  color: var(--charcoal-700);
 }
 
 .post-body h2 {
-  margin-top: 36px;
+  margin-top: 2.5rem;
+  font-size: 1.75rem;
 }
 
-.post-body li {
-  margin-bottom: 10px;
+.post-body p {
+  margin-bottom: 1.5rem;
 }
 
 .post-body img {
   max-width: 100%;
   height: auto;
+  border-radius: var(--radius-md);
+  margin: 1.5rem 0;
 }
 
 .post-footer {
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(58, 58, 54, 0.12);
+  margin-top: 3rem;
 }
 
+/* Footer */
 .site-footer {
-  padding-block: 28px;
-  border-top: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--muted);
-  font-size: 0.88rem;
+  padding-block: 3rem 2rem;
+  border-top: 1px solid rgba(176, 141, 87, 0.25);
+  background: var(--navy-950);
+  color: var(--parchment-100);
 }
 
 .site-footer p {
   max-width: 850px;
-  margin-block: 8px;
+  margin-block: 0.75rem;
+  color: rgba(245, 240, 230, 0.7);
 }
 
-@media (max-width: 700px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
+.site-footer a {
+  color: var(--parchment-100);
+  text-decoration: underline;
+  text-decoration-color: rgba(176, 141, 87, 0.5);
+  text-underline-offset: 3px;
+}
 
+.site-footer a:hover {
+  color: var(--brass-500);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
   .header-inner {
     align-items: flex-start;
     flex-direction: column;
   }
-
-  .hero {
-    padding-top: 42px;
+  
+  .site-nav {
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .card,
-  .empty-state {
-    padding: 22px;
+  .hero {
+    padding-top: 2.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
   }
 }
