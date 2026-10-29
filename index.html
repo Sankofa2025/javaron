@@ -440,6 +440,12 @@
     .contact-details__item a {
       text-decoration: underline; text-decoration-color: rgba(176, 141, 87, 0.65); text-underline-offset: 4px;
     }
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
     .contact-direct-wrap {
       padding: clamp(2rem, 4vw, 3rem); border-radius: var(--radius-md);
       background: var(--parchment-50); box-shadow: var(--shadow-md); color: var(--charcoal-700); text-align: center;
@@ -448,6 +454,67 @@
     .contact-direct-wrap p { margin-bottom: 1.5rem; color: var(--charcoal-700); line-height: 1.6; }
     .contact-direct-wrap .btn { font-size: 1.1rem; padding: 1rem 2rem; }
     .contact-direct-notice { margin-top: 1.5rem; font-size: 0.8rem; color: var(--charcoal-500); line-height: 1.5; }
+    
+    /* Contact Form Styles */
+    .contact-form {
+      padding: clamp(2rem, 4vw, 3rem);
+      border-radius: var(--radius-md);
+      background: var(--parchment-50);
+      box-shadow: var(--shadow-md);
+      color: var(--charcoal-700);
+    }
+    .contact-form h3 {
+      margin-bottom: 1rem;
+      color: var(--navy-900);
+      text-align: center;
+    }
+    .contact-form p {
+      margin-bottom: 1.5rem;
+      color: var(--charcoal-700);
+      line-height: 1.6;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--charcoal-700);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(58, 58, 54, 0.2);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--white);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: 3px solid var(--brass-500);
+      outline-offset: 2px;
+      border-color: var(--brass-500);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .contact-form .btn {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .form-notice {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--charcoal-500);
+      text-align: center;
+      line-height: 1.5;
+    }
 
     /* Footer */
     .site-footer { background: var(--navy-950); border-top: 1px solid rgba(176, 141, 87, 0.25); color: var(--parchment-100); }
@@ -491,6 +558,7 @@
       .footer-main { grid-template-columns: 1fr; }
       .footer-brand { grid-column: auto; }
       .contact-direct-wrap { padding: 1.5rem; }
+      .contact-cards { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -754,7 +822,7 @@
                 With a passion for excellence and client advocacy, she plays a key role in strengthening operations, building relationships, and supporting the firm's mission.
               </p>
               <p>
-                <em>“Leadership isn't about the title you hold, but the impact you make.”</em>
+                <em>"Leadership isn't about the title you hold, but the impact you make."</em>
               </p>
               <div class="team-contact">
                 <div><strong>Email:</strong> <a href="mailto:results@sankofalawgroup.com">results@sankofalawgroup.com</a></div>
@@ -811,48 +879,78 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section contact" aria-labelledby="contact-heading">
-      <div class="container contact-grid">
-        <div class="contact-copy">
+      <div class="container">
+        <div class="section-heading">
           <span class="eyebrow" style="color: var(--brass-500);">Contact Sankofa Law Group</span>
-          <h2 id="contact-heading">Take the next step with clear, confidential communication.</h2>
-          <p>
-            For urgent criminal-defense matters, call the emergency line. For personal injury, family law, or civil matters, reach out directly to the attorney of your choice or use our secure contact form.
+          <h2 id="contact-heading" style="color: var(--parchment-100);">Take the next step with clear, confidential communication.</h2>
+          <p style="max-width: 35rem; margin: 1.25rem auto 0; color: rgba(245, 240, 230, 0.84);">
+            For urgent criminal-defense matters, call the emergency line. For personal injury, family law, or civil matters, reach out directly to the attorney of your choice or use our secure contact form below.
           </p>
+        </div>
 
-          <div class="contact-details">
-            <div class="contact-details__item">
-              <strong>Firm Emergency Line</strong>
-              <a href="tel:+18723215229">(872) 321-5229</a>
-            </div>
-            <div class="contact-details__item">
-              <strong>Tiarra Thompson, Esq. (Direct)</strong>
-              <a href="tel:+18723215300">(872) 321-5300</a> &nbsp;|&nbsp; <a href="mailto:Tiarra@sankofalawgroup.com">Tiarra@sankofalawgroup.com</a>
-            </div>
-            <div class="contact-details__item">
-              <strong>Office Location</strong>
-              <span>837 E 162nd Street #2<br>South Holland, IL 60473</span>
-            </div>
-            <div class="contact-details__item">
-              <strong>Service Areas</strong>
-              <span>Serving the greater Chicagoland area, including Cook, Kane, DuPage, Will, and Lake Counties</span>
-            </div>
+        <div class="contact-details" style="margin-bottom: 3rem;">
+          <div class="contact-details__item">
+            <strong>Firm Emergency Line</strong>
+            <a href="tel:+18723215229">(872) 321-5229</a>
+          </div>
+          <div class="contact-details__item">
+            <strong>Tiarra Thompson, Esq. (Direct)</strong>
+            <a href="tel:+18723215300">(872) 321-5300</a> &nbsp;|&nbsp; <a href="mailto:Tiarra@sankofalawgroup.com">Tiarra@sankofalawgroup.com</a>
+          </div>
+          <div class="contact-details__item">
+            <strong>Office Location</strong>
+            <span>837 E 162nd Street #2<br>South Holland, IL 60473</span>
+          </div>
+          <div class="contact-details__item">
+            <strong>Service Areas</strong>
+            <span>Serving the greater Chicagoland area, including Cook, Kane, DuPage, Will, and Lake Counties</span>
           </div>
         </div>
 
-        <!-- Direct Email Contact Card -->
-        <div class="contact-direct-wrap">
-          <h3>Email Us Directly</h3>
-          <p>
-            To ensure the highest level of confidentiality and security for your legal matters, 
-            we recommend contacting us directly via email or phone rather than using unsecured web forms.
-          </p>
-          <a href="mailto:results@sankofalawgroup.com?subject=Confidential%20Consultation%20Request" class="btn btn--navy">
-            results@sankofalawgroup.com
-          </a>
-          <p class="contact-direct-notice">
-            <strong>Please note:</strong> Do not include highly sensitive, privileged, or confidential details in your initial email. 
-            We will respond promptly to schedule a secure, confidential consultation.
-          </p>
+        <!-- Contact Cards Grid -->
+        <div class="contact-cards">
+          <!-- Email Contact Card -->
+          <div class="contact-direct-wrap">
+            <h3>Email Us Directly</h3>
+            <p>
+              To ensure the highest level of confidentiality and security for your legal matters, 
+              we recommend contacting us directly via email or phone rather than using unsecured web forms.
+            </p>
+            <a href="mailto:results@sankofalawgroup.com?subject=Confidential%20Consultation%20Request" class="btn btn--navy">
+              results@sankofalawgroup.com
+            </a>
+            <p class="contact-direct-notice">
+              <strong>Please note:</strong> Do not include highly sensitive, privileged, or confidential details in your initial email. 
+              We will respond promptly to schedule a secure, confidential consultation.
+            </p>
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <p>
+              Fill out the form below and we'll get back to you as soon as possible to discuss your legal needs.
+            </p>
+            <form action="https://formspree.io/f/mrpeobag" method="POST">
+              <div class="form-group">
+                <label for="contact-name">Your Name *</label>
+                <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Your Email *</label>
+                <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Your Message *</label>
+                <textarea id="contact-message" name="message" placeholder="Tell us about your legal matter..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn--navy">Send Message</button>
+            </form>
+            <p class="form-notice">
+              <strong>Confidentiality Notice:</strong> Do not include highly sensitive or privileged information in this form. 
+              We will respond promptly to schedule a secure consultation.
+            </p>
+          </div>
         </div>
       </div>
     </section>
