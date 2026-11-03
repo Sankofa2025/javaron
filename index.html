@@ -1060,6 +1060,510 @@
     </div>
   </footer>
 
+  <!-- ====================================================================== -->
+  <!-- SANKOFA WELCOME ASSISTANT (VERSION 1: SAFE CLICKABLE PROTOTYPE)        -->
+  <!-- ====================================================================== -->
+  <style>
+    /* Widget Scoped Styles to prevent conflicts with main site CSS */
+    #sankofa-chat-widget {
+      --chat-navy: #0b1b2e;
+      --chat-parchment: #f5f0e6;
+      --chat-brass: #b08d57;
+      --chat-white: #ffffff;
+      --chat-gray: #66665f;
+      font-family: "Inter", Arial, sans-serif;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    /* Toggle Button */
+    .chat-toggle-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--chat-navy);
+      color: var(--chat-parchment);
+      border: 2px solid var(--chat-brass);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(11, 27, 46, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .chat-toggle-btn:hover {
+      transform: scale(1.05);
+      background: #162b44;
+    }
+    .chat-toggle-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+    }
+
+    /* Chat Window */
+    .chat-window {
+      width: 380px;
+      max-width: calc(100vw - 48px);
+      height: 550px;
+      max-height: 70vh;
+      background: var(--chat-white);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(11, 27, 46, 0.2);
+      border: 1px solid rgba(58, 58, 54, 0.1);
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      overflow: hidden;
+      margin-bottom: 16px;
+      animation: slideUp 0.3s ease-out;
+    }
+    .chat-window.is-open {
+      display: flex;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .chat-header {
+      background: var(--chat-navy);
+      color: var(--chat-parchment);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--chat-brass);
+    }
+    .chat-header-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .chat-header-subtitle {
+      font-size: 0.7rem;
+      color: rgba(245, 240, 230, 0.7);
+      margin: 4px 0 0 0;
+      font-weight: 400;
+    }
+    .chat-close-btn {
+      background: none;
+      border: none;
+      color: var(--chat-parchment);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-close-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* Demo Banner */
+    .chat-demo-banner {
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 6px;
+      border-bottom: 1px solid #fcd34d;
+    }
+
+    /* Message Area */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #fafafa;
+    }
+    .chat-message {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-message.bot {
+      background: var(--chat-parchment);
+      color: var(--chat-navy);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+      border: 1px solid rgba(58, 58, 54, 0.1);
+    }
+    .chat-message.user {
+      background: var(--chat-navy);
+      color: var(--chat-parchment);
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+    }
+    .chat-message strong { color: var(--chat-navy); }
+    .chat-message.bot strong { color: #6f1717; }
+
+    /* Action Buttons Area */
+    .chat-actions {
+      padding: 12px 16px;
+      background: var(--chat-white);
+      border-top: 1px solid rgba(58, 58, 54, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chat-action-btn {
+      background: var(--chat-white);
+      border: 1px solid var(--chat-brass);
+      color: var(--chat-navy);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1 1 auto;
+      text-align: center;
+      min-width: 120px;
+    }
+    .chat-action-btn:hover {
+      background: var(--chat-brass);
+      color: var(--chat-white);
+    }
+    .chat-action-btn.secondary {
+      border-color: var(--chat-gray);
+      color: var(--chat-gray);
+      font-size: 0.8rem;
+    }
+    .chat-action-btn.secondary:hover {
+      background: var(--chat-gray);
+      color: var(--chat-white);
+    }
+    .chat-action-btn.primary {
+      background: var(--chat-navy);
+      border-color: var(--chat-navy);
+      color: var(--chat-parchment);
+    }
+    .chat-action-btn.primary:hover {
+      background: #162b44;
+    }
+
+    /* Contact Block inside messages */
+    .chat-contact-block {
+      background: var(--chat-white);
+      border: 1px solid var(--chat-brass);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+    .chat-contact-block a {
+      color: var(--chat-navy);
+      font-weight: 700;
+      text-decoration: none;
+      display: block;
+      margin: 4px 0;
+    }
+    .chat-contact-block a:hover {
+      text-decoration: underline;
+      color: var(--chat-brass);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      #sankofa-chat-widget { bottom: 16px; right: 16px; }
+      .chat-window { width: calc(100vw - 32px); height: 60vh; }
+    }
+  </style>
+
+  <div id="sankofa-chat-widget">
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-demo-banner">
+        ⚠️ DEMO MODE: No messages are sent to the firm. Do not share confidential details.
+      </div>
+      <div class="chat-header">
+        <div>
+          <h3 class="chat-header-title">Sankofa Welcome Assistant</h3>
+          <p class="chat-header-subtitle">Automated assistance • Not legal advice</p>
+        </div>
+        <button class="chat-close-btn" onclick="toggleChat()" aria-label="Close chat">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+      
+      <div class="chat-messages" id="chatMessages">
+        <!-- Messages will be injected here by JS -->
+      </div>
+
+      <div class="chat-actions" id="chatActions">
+        <!-- Buttons will be injected here by JS -->
+      </div>
+    </div>
+
+    <!-- Floating Toggle Button -->
+    <button class="chat-toggle-btn" onclick="toggleChat()" aria-label="Open chat assistant">
+      <span>Questions?<br>Start here.</span>
+    </button>
+  </div>
+
+  <script>
+    // --- STATE MANAGEMENT ---
+    const chatWindow = document.getElementById('chatWindow');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatActions = document.getElementById('chatActions');
+    let isChatOpen = false;
+    let hasStarted = false;
+
+    // --- CORE FUNCTIONS ---
+    function toggleChat() {
+      isChatOpen = !isChatOpen;
+      chatWindow.classList.toggle('is-open', isChatOpen);
+      if (isChatOpen && !hasStarted) {
+        hasStarted = true;
+        setTimeout(() => showOpening(), 300);
+      }
+    }
+
+    function addMessage(text, sender = 'bot') {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-message ${sender}`;
+      msgDiv.innerHTML = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function clearActions() {
+      chatActions.innerHTML = '';
+    }
+
+    function addActionButtons(buttons) {
+      clearActions();
+      buttons.forEach(btn => {
+        const buttonEl = document.createElement('button');
+        buttonEl.className = `chat-action-btn ${btn.class || ''}`;
+        buttonEl.textContent = btn.text;
+        buttonEl.onclick = () => {
+          addMessage(btn.text, 'user');
+          clearActions();
+          setTimeout(() => btn.action(), 400);
+        };
+        chatActions.appendChild(buttonEl);
+      });
+    }
+
+    // --- CONVERSATION FLOWS ---
+    function showOpening() {
+      addMessage(`Welcome to Sankofa Law Group. I can help you explore our services and find the right way to contact our team.<br><br><strong>Please do not share confidential details, documents, or time-sensitive case information here.</strong> This assistant does not provide legal advice, and using it does not create an attorney-client relationship.`);
+      
+      addActionButtons([
+        { text: "I was injured.", action: flowInjuryCategory },
+        { text: "I need criminal defense.", action: flowCriminalChoice },
+        { text: "I need help with a family matter.", action: flowFamilyCategory },
+        { text: "I’m an existing client.", action: flowExistingClient },
+        { text: "Contact & office info.", action: flowOfficeInfo },
+        { text: "Something else.", action: flowSomethingElse }
+      ]);
+    }
+
+    function showMainMenu() {
+      addMessage("How else can I help you today?");
+      addActionButtons([
+        { text: "Main Menu", action: showOpening, class: "secondary" },
+        { text: "Call the Firm: (872) 321-5229", action: () => window.location.href = "tel:+18723215229", class: "primary" }
+      ]);
+    }
+
+    // 1. Personal Injury Flow
+    function flowInjuryCategory() {
+      addMessage("I’m sorry you’re dealing with an injury. Sankofa lists auto and trucking accidents, slip-and-fall matters, wrongful death, and catastrophic or severe injuries among its personal injury services. Which category best matches your inquiry? <em>(Please choose a category without sharing details.)</em>");
+      addActionButtons([
+        { text: "Auto or truck accident", action: () => flowInjuryCounty("Auto/truck accident") },
+        { text: "Slip and fall", action: () => flowInjuryCounty("Slip and fall") },
+        { text: "Serious injury", action: () => flowInjuryCounty("Serious injury") },
+        { text: "Death of a loved one", action: () => flowInjuryCounty("Wrongful death") },
+        { text: "Another injury matter", action: () => flowInjuryCounty("Another injury") },
+        { text: "I’m not sure", action: () => flowInjuryCounty("Unsure") }
+      ]);
+    }
+
+    function flowInjuryCounty(category) {
+      addMessage(`Which county is connected with your inquiry?`);
+      addActionButtons([
+        { text: "Cook", action: () => flowInjuryFinal("Cook", true) },
+        { text: "Kane", action: () => flowInjuryFinal("Kane", true) },
+        { text: "Will", action: () => flowInjuryFinal("Will", true) },
+        { text: "DuPage", action: () => flowInjuryFinal("DuPage", true) },
+        { text: "Lake", action: () => flowInjuryFinal("Lake", true) },
+        { text: "Another county", action: () => flowInjuryFinal("Another county", false) },
+        { text: "I’m not sure", action: () => flowInjuryFinal("Unsure", false) }
+      ]);
+    }
+
+    function flowInjuryFinal(county, isListed) {
+      if (isListed) {
+        addMessage(`Sankofa lists <strong>${county} County</strong> within its service area. An attorney would still need to review whether the firm can accept your matter.`);
+      } else {
+        addMessage(`Sankofa’s listed service area includes Cook, Kane, Will, DuPage, and Lake counties. Please contact the firm to ask whether it can consider a matter in <strong>${county}</strong>.`);
+      }
+      
+      addMessage(`The website offers a <strong>free injury consultation</strong>. You can contact Javaron Buckley to request one. Please avoid sending confidential details in your initial message.`);
+      
+      const contactHTML = `
+        <div class="chat-contact-block">
+          <strong>Contact Javaron Buckley:</strong>
+          <a href="tel:+18723215229">📞 Call: (872) 321-5229</a>
+          <a href="mailto:results@sankofalawgroup.com">✉️ Email: results@sankofalawgroup.com</a>
+        </div>
+      `;
+      addMessage(contactHTML);
+      
+      addActionButtons([
+        { text: "Return to Main Menu", action: showMainMenu, class: "secondary" }
+      ]);
+    }
+
+    // 2. Criminal Defense Flow
+    function flowCriminalChoice() {
+      addMessage("Sankofa’s website lists a criminal emergency contact line. Would you like to call now or explore the firm’s criminal defense services? <em>(Please do not describe alleged conduct or share case details here.)</em>");
+      addActionButtons([
+        { text: "🚨 Call Criminal Emergency Line", action: flowCriminalEmergency, class: "primary" },
+        { text: "Explore criminal defense services", action: flowCriminalExplore },
+        { text: "Existing-client contact", action: flowExistingClient },
+        { text: "Main Menu", action: showMainMenu, class: "secondary" }
+      ]);
+    }
+
+    function flowCriminalEmergency() {
+      addMessage("Sankofa lists <strong>(872) 321-5229</strong> as its firm emergency line. Use the call button below to try to reach the firm directly. <br><br><em>This chat does not confirm that an attorney is available or that your matter is being monitored.</em>");
+      addActionButtons([
+        { text: "📞 Call (872) 321-5229 Now", action: () => window.location.href = "tel:+18723215229", class: "primary" },
+        { text: "Return to Main Menu", action: showMainMenu, class: "secondary" }
+      ]);
+    }
+
+    function flowCriminalExplore() {
+      addMessage("The firm lists these criminal defense services:");
+      addActionButtons([
+        { text: "State/federal felony defense", action: flowCriminalFinal },
+        { text: "DUI and traffic offenses", action: flowCriminalFinal },
+        { text: "White-collar/financial crime", action: flowCriminalFinal },
+        { text: "Expungement/record-sealing", action: flowCriminalFinal },
+        { text: "Another criminal matter", action: flowCriminalFinal }
+      ]);
+    }
+
+    function flowCriminalFinal() {
+      addMessage("You can contact the firm to ask about representation. <strong>Please do not rely on this chat to submit documents, report a court date, or request time-sensitive action.</strong>");
+      const contactHTML = `
+        <div class="chat-contact-block">
+          <strong>Contact the Firm:</strong>
+          <a href="tel:+18723215229">📞 Call: (872) 321-5229</a>
+          <a href="mailto:results@sankofalawgroup.com">✉️ Email: results@sankofalawgroup.com</a>
+        </div>
+      `;
+      addMessage(contactHTML);
+      addActionButtons([{ text: "Return to Main Menu", action: showMainMenu, class: "secondary" }]);
+    }
+
+    // 3. Family Law Flow
+    function flowFamilyCategory() {
+      addMessage("I can help you find the firm’s contact information for a family matter. Which broad category best fits your inquiry? <em>(Please do not include names, allegations, financial information, or details about children.)</em>");
+      addActionButtons([
+        { text: "Divorce", action: flowFamilyCounty },
+        { text: "Child custody", action: flowFamilyCounty },
+        { text: "Child support", action: flowFamilyCounty },
+        { text: "Spousal support", action: flowFamilyCounty },
+        { text: "Another family matter", action: flowFamilyCounty },
+        { text: "I’m not sure", action: flowFamilyCounty }
+      ]);
+    }
+
+    function flowFamilyCounty() {
+      addMessage("Which county is connected with your inquiry?");
+      addActionButtons([
+        { text: "Cook", action: () => flowFamilyFinal("Cook") },
+        { text: "Kane", action: () => flowFamilyFinal("Kane") },
+        { text: "Will", action: () => flowFamilyFinal("Will") },
+        { text: "DuPage", action: () => flowFamilyFinal("DuPage") },
+        { text: "Lake", action: () => flowFamilyFinal("Lake") },
+        { text: "Another county / Unsure", action: () => flowFamilyFinal("Another/Unsure") }
+      ]);
+    }
+
+    function flowFamilyFinal(county) {
+      addMessage(`Tiarra Thompson is listed as a partner attorney working on family law matters. You can contact her directly to ask about a consultation. The firm must confirm whether it can consider representation.`);
+      const contactHTML = `
+        <div class="chat-contact-block">
+          <strong>Contact Tiarra Thompson:</strong>
+          <a href="tel:+18723215300">📞 Call: (872) 321-5300</a>
+          <a href="mailto:Tiarra@sankofalawgroup.com">✉️ Email: Tiarra@sankofalawgroup.com</a>
+        </div>
+      `;
+      addMessage(contactHTML);
+      addActionButtons([{ text: "Return to Main Menu", action: showMainMenu, class: "secondary" }]);
+    }
+
+    // 4. Existing Client Flow
+    function flowExistingClient() {
+      addMessage("<strong>This assistant cannot access case files, check case status, or deliver messages to your attorney.</strong> Please contact your legal team directly. Do not enter case details here.");
+      const contactHTML = `
+        <div class="chat-contact-block">
+          <strong>Javaron Buckley:</strong><br>
+          <a href="tel:+18723215229">📞 (872) 321-5229</a>
+          <a href="mailto:results@sankofalawgroup.com">✉️ results@sankofalawgroup.com</a>
+          <hr style="border: 0; border-top: 1px solid #ccc; margin: 8px 0;">
+          <strong>Tiarra Thompson:</strong><br>
+          <a href="tel:+18723215300">📞 (872) 321-5300</a>
+          <a href="mailto:Tiarra@sankofalawgroup.com">✉️ Tiarra@sankofalawgroup.com</a>
+        </div>
+      `;
+      addMessage(contactHTML);
+      addActionButtons([{ text: "Return to Main Menu", action: showMainMenu, class: "secondary" }]);
+    }
+
+    // 5. Office Info Flow
+    function flowOfficeInfo() {
+      addMessage("Sankofa Law Group lists its office at:<br><strong>837 E 162nd Street #2, South Holland, IL 60473</strong><br><br>It serves the greater Chicagoland area, including Cook, Kane, Will, DuPage, and Lake counties.");
+      addMessage("<em>Note: I don’t have confirmed office hours. Please call the firm before visiting.</em>");
+      addActionButtons([
+        { text: "Call the Firm", action: () => window.location.href = "tel:+18723215229", class: "primary" },
+        { text: "Return to Main Menu", action: showMainMenu, class: "secondary" }
+      ]);
+    }
+
+    // 6. Something Else Flow
+    function flowSomethingElse() {
+      addMessage("The website also lists <strong>civil litigation</strong> services, including commercial and business disputes. Please contact the firm to ask whether it handles your specific type of matter.");
+      const contactHTML = `
+        <div class="chat-contact-block">
+          <strong>General Contact:</strong>
+          <a href="tel:+18723215229">📞 Call: (872) 321-5229</a>
+          <a href="mailto:results@sankofalawgroup.com">✉️ Email: results@sankofalawgroup.com</a>
+        </div>
+      `;
+      addMessage(contactHTML);
+      addActionButtons([{ text: "Return to Main Menu", action: showMainMenu, class: "secondary" }]);
+    }
+  </script>
+  <!-- ====================================================================== -->
+  <!-- END SANKOFA WELCOME ASSISTANT                                          -->
+  <!-- ====================================================================== -->
+
   <script>
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-nav");
